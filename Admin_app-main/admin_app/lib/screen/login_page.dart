@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+
 import 'dart:convert';
 
 import 'package:admin_app/screen/home_page.dart';
@@ -26,15 +28,32 @@ class _LoginPageState extends State<LoginPage> {
       body: ModalProgressHUD(
         inAsyncCall: isLoading == true,
         progressIndicator: spinkit,
+        opacity: 1,
         child: Container(
-          padding: EdgeInsets.all(25),
+          decoration: BoxDecoration(
+              color: const Color(0xffD7DBDD),
+              image: DecorationImage(
+                  image: AssetImage('assets/images/background.png'),
+                  fit: BoxFit.fill)),
+          padding: const EdgeInsets.all(25),
           width: double.infinity,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+            children: <Widget>[
+              Container(
+                height: 100,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(16),
+                    image: DecorationImage(
+                      image: AssetImage("images/1.jpg"),
+                    )),
+              ),
+              SizedBox(
+                height: 20,
+              ),
               Center(
                 child: Text(
-                  "Login",
+                  "Sign in using Email & Password",
                   style: myStyles20(),
                 ),
               ),
@@ -59,26 +78,29 @@ class _LoginPageState extends State<LoginPage> {
               ),
               CustomTextField(
                 controller: passwordController,
-                icon: Icons.password,
+                icon: Icons.lock_outlined,
                 hintText: "Enter Password",
+              ),
+              SizedBox(
+                height: 20,
               ),
               Center(
                 child: MaterialButton(
-                  onPressed: () {
-                    getLogin();
-                  },
-                  height: 50,
-                  minWidth: 120,
-                  child: Text(
-                    "Login",
-                    style: myStyle(18, Colors.white, FontWeight.w800),
-                  ),
-                  color: Colors.teal,
-                ),
+                    onPressed: () {
+                      getLogin();
+                    },
+                    height: 50,
+                    minWidth: 120,
+                    child: Text(
+                      "Login",
+                      style: myStyle(18, Colors.white, FontWeight.w800),
+                    ),
+                    color: Colors.lightBlue[700]),
               )
             ],
           ),
         ),
+        color: Colors.amber,
       ),
     );
   }
@@ -108,7 +130,7 @@ class _LoginPageState extends State<LoginPage> {
       setState(() {
         isLoading = false;
       });
-      showtoast("email or password not match");
+      showtoast("Email or Password Doesn't Match");
     }
   }
 
