@@ -60,7 +60,7 @@ class _HomePageState extends State<HomePage> {
             ),
             Center(
               child: Text(
-                "Welcome to Home_Page",
+                "Welcome to_Home_Page",
                 style: myStyles20(),
               ),
             ),
